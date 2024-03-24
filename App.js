@@ -30,6 +30,13 @@ export default function App() {
             onClick = {()=> setOpt(3)}
           />
 
+          <Text>{'\n\n'}</Text>
+
+          <BotaoPequeno
+            label = "Regras"
+            onClick = {()=> setOpt(4)}
+          />
+
         </View>
     );
     }
@@ -39,9 +46,30 @@ export default function App() {
         return (
             <View style={styles.container}>
 
-              <Gerador/>
+              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade fácil{'\n'}</Text>
 
-              <Text> {'\n\n\n\n\n\n\n\n\n\n'} </Text>
+              <Gerador timer = "10"/>
+
+              <Text> {'\n'} </Text>
+
+              <BotaoPequeno
+                label = "Voltar"
+                onClick = {()=>setOpt(0)}
+              />
+            </View>
+        )
+    }
+
+//modo médio
+    if (opt == 2) {
+        return (
+            <View style={styles.container}>
+
+              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade médio{'\n'}</Text>
+
+              <Gerador timer = "7"/>
+
+              <Text> {'\n'} </Text>
 
               <BotaoPequeno
                 label = "Voltar"
@@ -52,32 +80,35 @@ export default function App() {
         )
     }
 
-//modo médio
-    if (opt == 2) {
-        return (
-            <View style={styles.container}>
-              <Text style={styles.text}>médio</Text>
-
-                <BotaoDefault
-                    label = "Voltar"
-                    onClick = {()=>setOpt(0)}
-                />
-            </View>
-        )
-    }
-
 //modo difícil
     if (opt == 3) {
         return (
             <View style={styles.container}>
-              <Text style={styles.text}>difícil</Text>
 
-                <BotaoDefault
-                    label = "Voltar"
-                    onClick = {()=>setOpt(0)}
-                />
+              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade fácil{'\n'}</Text>
+
+              <Gerador timer = "4"/>
+
+              <Text> {'\n'} </Text>
+
+              <BotaoPequeno
+                label = "Voltar"
+                onClick = {()=>setOpt(0)}
+              />
+
             </View>
         )
+    }
+
+    if (opt == 4) {
+        return (
+        <View>
+              <Text style = {styles.text}>Dificuldade fácil{'\n'}</Text>
+              <Text style = {styles.paragraph}>lorem ipsum dolor siamet</Text>
+        </View>
+
+        )
+
     }
 }
 
@@ -89,6 +120,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black'
   },
+
+    paragraph: {
+    fontSize: 20,
+    marginBottom: 30,
+    color: 'black'
+    },
 
   container: {
     flex: 1,
