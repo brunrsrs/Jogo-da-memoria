@@ -41,11 +41,6 @@ export default RNG => {
     }, parseInt(auxTimer));
     }
 
-//Função para atualizar o cronometro
-    let ajustaTempo = () => {
-        setAuxTimer(parseInt(RNG.timer))
-    }
-
 //Variavel que faz a verificação do valor colocado pelo usuário
     let verifica = () => {
         if (parseInt(palpite) == aleatorio) {
