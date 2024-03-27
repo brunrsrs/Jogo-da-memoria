@@ -46,9 +46,9 @@ export default function App() {
         return (
             <View style={styles.container}>
 
-              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade fácil{'\n'}</Text>
+              <Text style = {{fontSize: 25, fontWeight: 'bold'}}>Dificuldade fácil{'\n'}</Text>
 
-              <Gerador timer = "10"/>
+              <Gerador timer = "10000"/>
 
               <Text> {'\n'} </Text>
 
@@ -65,9 +65,9 @@ export default function App() {
         return (
             <View style={styles.container}>
 
-              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade médio{'\n'}</Text>
+              <Text style = {{fontSize: 25, fontWeight: 'bold'}}>Dificuldade médio{'\n'}</Text>
 
-              <Gerador timer = "7"/>
+              <Gerador timer = "7000"/>
 
               <Text> {'\n'} </Text>
 
@@ -85,9 +85,9 @@ export default function App() {
         return (
             <View style={styles.container}>
 
-              <Text style = {{fontSize: 35, fontWeight: 'bold'}}>Dificuldade fácil{'\n'}</Text>
+              <Text style = {{fontSize: 25, fontWeight: 'bold'}}>Dificuldade difícil{'\n'}</Text>
 
-              <Gerador timer = "4"/>
+              <Gerador timer = "5000"/>
 
               <Text> {'\n'} </Text>
 
@@ -100,11 +100,22 @@ export default function App() {
         )
     }
 
+//Opção que mostra as regras
     if (opt == 4) {
         return (
-        <View>
-              <Text style = {styles.text}>Dificuldade fácil{'\n'}</Text>
-              <Text style = {styles.paragraph}>lorem ipsum dolor siamet</Text>
+        <View style={styles.container}>
+              <Text style = {styles.text}>Regras</Text>
+              <Text style = {{fontSize: 20, marginBottom: 20}}>Aparecerá um número na tela!!</Text>
+              <Text style = {{fontSize: 20, marginBottom: 5}}>O objetivo é lembrar e colocar o</Text>
+              <Text style = {{fontSize: 20, marginBottom: 5}}>número que apareceu no espaço!{'\n'}</Text>
+              <Text style = {{fontSize: 20, marginBottom: 5}}>Tempo de cada dificuldade:</Text>
+              <Text style = {{fontSize: 20, fontWeight: 'bold'}}>Fácil: 10s</Text>
+              <Text style = {{fontSize: 20,fontWeight: 'bold'}}>Médio: 7s</Text>
+              <Text style = {{fontSize: 20,fontWeight: 'bold'}}>Difícil: 5s{'\n'}</Text>
+              <BotaoPequeno
+                label = "Voltar"
+                onClick = {()=>setOpt(0)}
+              />
         </View>
 
         )
@@ -112,7 +123,7 @@ export default function App() {
     }
 }
 
-
+//Styles de componentes
 const styles = StyleSheet.create({
     text: {
     fontSize: 50,

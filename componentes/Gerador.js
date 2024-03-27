@@ -5,6 +5,8 @@ import {BotaoPequeno, BotaoDefault} from './Botao';
 export default RNG => {
 
 //States usados
+    const [auxTimer, setAuxTimer] = useState(RNG.timer);
+    const [tela, setTela] = useState(0);
     const [palpite, setPalpite] = useState(0);
     const [flag, setFlag] = useState(0);
     const [pontos, setPontos] = useState(-1);
@@ -32,6 +34,16 @@ export default RNG => {
     }
     aleatoriza()
     attPontua()
+//muda a tela e poe um cronometro pra voltar
+    setTela(0)
+    setTimeout(() => {
+        setTela(1)
+    }, parseInt(auxTimer));
+    }
+
+//Função para atualizar o cronometro
+    let ajustaTempo = () => {
+        setAuxTimer(parseInt(RNG.timer))
     }
 
 //Variavel que faz a verificação do valor colocado pelo usuário
@@ -45,6 +57,7 @@ export default RNG => {
             setFlag(1)
         }
     }
+
 
 //Para caso de inicialização
     if(pontos < 0) {
@@ -61,37 +74,46 @@ export default RNG => {
 
 //Para os demais casos
     else if (pontos >= 0 && flag == 0) {
-    return(
-    <>
+    //Ocasião que mostra o numero gerado
+        if (tela == 0) {
+            return (
+            <>
+                <Text style = {{fontSize: 35, fontWeight: 'bold'}}>{aleatorio}</Text>
+            </>
+            )
+        }
 
-/*          TODO (falta arruma isso)
-    setTimeout(() => {
-        <Text style = {{fontSize: 35, fontWeight: 'bold'}}>{aleatorio}</Text>
-    }, parseInt(timer))
-*/
-        <TextInput
-        style = {styles.input}
-        placeholder="Digite o número lido"
-        onChangeText = {handleTextChange}
-        value={palpite.toString()}
-        />
+    //Ocasião que pede o numero
+        else {
+            return(
+            <>
+                <TextInput
+                style = {styles.input}
+                placeholder="Digite o número lido"
+                onChangeText = {handleTextChange}
+                value={palpite.toString()}
+                />
 
-        <Button
-        title = "Confirma"
-        onPress = {verifica}
-        color = 'black'
-        />
+                <Button
+                title = "Confirma"
+                onPress = {verifica}
+                color = 'black'
+                />
 
-        <Text style = {{fontSize: 25}}> {'\n\n'} Pontuação {pontos} </Text>
-    </>
-    )
+                <Text style = {{fontSize: 25}}> {'\n\n'} Pontuação {pontos} </Text>
+            </>
+            )
+        }
+
     }
 
 //Quando o usuário errar
     else {
     return (
     <>
-        <Text style = {{fontSize: 25, fontWeight: 'bold'}}> Você perdeu!! </Text>
+        <Text style = {{fontSize: 25, fontWeight: 'bold'}}> Você perdeu!!{'\n'}</Text>
+        <Text style = {{fontSize: 25}}> Sequência correta: {aleatorio}</Text>
+        <Text style = {{fontSize: 25}}> Sua resposta: {palpite}{'\n'}</Text>
         <Text style = {{fontSize: 25}}> Pontuação: {pontos} </Text>
     </>
     )
